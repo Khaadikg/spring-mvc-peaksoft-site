@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Page</title>
+    <link rel="stylesheet" th:href="@{/update.css}">
+</head>
+<body>
+
+<div class="form">
+<form th:action="@{/course/{id}(id=${updateCourse.getId()})}"
+      th:method="patch"
+      th:object="${updateCourse}">
+    <label class="update_label"> Course name:</label>
+    <input class="update_input" th:field="*{courseName}" placeholder="name">
+    <label class="update_label"> Duration:</label>
+    <input class="update_input" th:field="*{durationMonth}" placeholder="duration">
+    <label class="update_label"> Set company:</label>
+    <select th:field="${updateCourse.companyId}" class="update_input">
+        <option th:each="company:${companyList}"
+                th:value="${company.getId()}"
+                th:text="${company.getCompanyName()}"></option>
+    </select>
+    <input class="update_submit" type="submit" value="UPDATE">
+
+</form>
+</div>
+
+</body>
+</html>

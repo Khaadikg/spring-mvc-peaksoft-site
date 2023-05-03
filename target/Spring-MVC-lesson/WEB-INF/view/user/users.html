@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users Page</title>
+    <link rel="stylesheet" th:href="@{/list.css}">
+</head>
+<body>
+<div class="list_navbar">
+    <div class="list_back">
+        <input style="display: block; margin:auto; font-size:40px;"
+                type="button" value="HOME" onclick="window.location.href = '/'">
+    </div>
+    <div class="navbar_name">
+        <h1>USERS LIST</h1>
+    </div>
+    <div class="navbar_new">
+        <input style="display: block; margin:auto; font-size: 50px"
+               type="button" value="NEW" onclick="window.location.href = '/user/addUser'">
+    </div>
+</div>
+<div class="list_holder">
+    <table>
+
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Last name</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>DELETE</th>
+            <th>UPDATE</th>
+        </tr>
+        <tr th:each="user:${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.login}"></td>
+            <td th:text="${user.password}"></td>
+            <td>
+                <form th:method="post"
+                      th:action="@{/user/delete/(id=${user.getId()})}">
+                    <input type="submit" value="DELETE" style="color: red">
+                </form>
+            </td>
+            <td>
+                <form
+                    th:method="get"
+                    th:action="@{/user/userUpdate/{id}(id=${user.id})}">
+                    <input type="submit" value="EDIT" style="color: green">
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

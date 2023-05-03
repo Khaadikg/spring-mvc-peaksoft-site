@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Page</title>
+    <link rel="stylesheet" th:href="@{/list.css}">
+</head>
+<body>
+<div class="list_navbar">
+    <div class="list_back">
+        <input style="display: block; margin:auto; font-size:40px;"
+                type="button" value="HOME" onclick="window.location.href = '/'">
+    </div>
+    <div class="navbar_name">
+        <h1>STUDENTS LIST</h1>
+    </div>
+    <div class="navbar_new">
+        <input style="display: block; margin:auto; font-size: 50px"
+               type="button" value="NEW" onclick="window.location.href = '/student/addStudent'">
+    </div>
+</div>
+<div class="list_holder">
+    <table>
+
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Study Format</th>
+            <th>DELETE</th>
+            <th>UPDATE</th>
+        </tr>
+        <tr th:each="student:${students}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.firstName}"></td>
+            <td th:text="${student.lastName}"></td>
+            <td th:text="${student.email}"></td>
+            <td th:text="${student.studyFormat}"></td>
+<!--            <td th:text="${student.getGroup().groupName}"></td>-->
+<!--            <td>-->
+<!--                <form-->
+<!--                        th:method="get"-->
+<!--                        th:action="@{/student/studentUpdate/{id}(id=${student.id})}">-->
+<!--                    <input type="submit" value="GROUP" style="color: orange">-->
+<!--                </form>-->
+<!--            </td>-->
+            <td>
+                <form th:method="post"
+                      th:action="@{/student/delete/(id=${student.getId()})}">
+                    <input type="submit" value="DELETE" style="color: red">
+                </form>
+            </td>
+            <td>
+                <form
+                    th:method="get"
+                    th:action="@{/student/studentUpdate/{id}(id=${student.id})}">
+                    <input type="submit" value="EDIT" style="color: green">
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

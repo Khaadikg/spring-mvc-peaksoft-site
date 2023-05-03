@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Courses Page</title>
+  <link rel="stylesheet" th:href="@{/list.css}">
+</head>
+<body>
+<div class="list_navbar">
+  <div class="list_back">
+    <input style="display: block; margin:auto; font-size:40px;"
+           type="button" value="HOME" onclick="window.location.href = '/'">
+  </div>
+  <div class="navbar_name">
+    <h3 style="float: left; padding-right: 20px">COURSES LIST</h3>
+    <h3 th:name="count" th:text="${count}" style="display: inline-block"></h3>
+    <h3 style="display: inline-block">COURSES</h3>
+    <h3 th:name="count" th:text="${countStudent}" style="float: right"></h3>
+    <h3 style="float: right">PEOPLE</h3>
+
+  </div>
+  <div class="navbar_new">
+    <input style="display: block; margin:auto; font-size: 50px"
+           type="button" value="NEW" onclick="window.location.href = '/course/addCourse'">
+  </div>
+</div>
+<div class="list_holder">
+  <table>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Duration</th>
+      <th>DELETE</th>
+      <th>UPDATE</th>
+    </tr>
+    <tr th:each="course:${coursesList}">
+      <td th:text="${course.id}"></td>
+      <td th:text="${course.courseName}"></td>
+      <td th:text="${course.durationMonth}"></td>
+      <td>
+        <form th:method="post"
+              th:action="@{/course/delete/(id=${course.getId()})}">
+          <input type="submit" value="delete" style="color: red">
+        </form>
+      </td>
+      <td>
+        <form
+                th:method="get"
+                th:action="@{/course/courseUpdate/{id}(id=${course.id})}">
+          <input type="submit" value="EDIT" style="color: green">
+        </form>
+      </td>
+
+    </tr>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Save Page</title>
+    <link rel="stylesheet" th:href="@{/save.css}">
+</head>
+<body>
+<div class="form" style="height: 400px">
+    <form
+            th:action="@{saveCourse}"
+            th:method="post"
+            th:object="${course}"
+            style="text-align: center">
+
+        <input th:class="form_input" th:field="*{courseName}" placeholder="Name">
+        <br>
+        <br>
+        <input th:class="form_input" th:field="*{durationMonth}" placeholder="Duration">
+        <br>
+        <br>
+        <select th:field="${course.companyId}" th:class="form_input">
+            <option th:each="company:${companyList}"
+                    th:value="${company.getId()}"
+                    th:text="${company.getCompanyName()}"></option>
+        </select>
+        <br>
+        <input th:class="form_submit" type="submit" value = "ENTER">
+    </form>
+</div>
+
+</body>
+</html>

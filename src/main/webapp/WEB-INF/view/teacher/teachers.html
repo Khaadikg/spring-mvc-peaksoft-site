@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Page</title>
+    <link rel="stylesheet" th:href="@{/list.css}">
+</head>
+<body>
+<div class="list_navbar">
+    <div class="list_back">
+        <input style="display: block; margin:auto; font-size:40px;"
+                type="button" value="HOME" onclick="window.location.href = '/'">
+    </div>
+    <div class="navbar_name">
+        <h1>TEACHERS LIST</h1>
+    </div>
+    <div class="navbar_new">
+        <input style="display: block; margin:auto; font-size: 50px"
+               type="button" value="NEW" onclick="window.location.href = '/teacher/addTeacher'">
+    </div>
+</div>
+<div class="list_holder">
+    <table>
+
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Last name</th>
+            <th>email</th>
+            <th>DELETE</th>
+            <th>UPDATE</th>
+            <th>COURSE</th>
+        </tr>
+        <tr th:each="teacher:${teachers}">
+            <td th:text="${teacher.id}"></td>
+            <td th:text="${teacher.firstName}"></td>
+            <td th:text="${teacher.lastName}"></td>
+            <td th:text="${teacher.email}"></td>
+            <td>
+                <form th:method="post"
+                      th:action="@{/teacher/delete/(id=${teacher.getId()})}">
+                    <input type="submit" value="DELETE" style="color: red">
+                </form>
+            </td>
+            <td>
+                <form
+                    th:method="get"
+                    th:action="@{/teacher/teacherUpdate/{id}(id=${teacher.id})}">
+                    <input type="submit" value="EDIT" style="color: green">
+                </form>
+            </td>
+            <td>
+                <form
+                        th:method="get"
+                        th:action="@{/teacher/students/{teacherId}(teacherId=${teacher.id})}">
+                    <input type="submit" value="EDIT" style="color: orange">
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

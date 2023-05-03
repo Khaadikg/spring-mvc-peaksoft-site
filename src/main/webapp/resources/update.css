@@ -1,0 +1,30 @@
+.update_input, .update_submit {
+    text-decoration: none;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    font-size: 30px;
+    font-family: sans-serif;
+    justify-content: center;
+}
+.update_submit {
+    margin-left: 40%;
+    margin-top: 10px;
+}
+.update_label {
+    text-decoration: none;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+.form {
+    margin-top: 10%;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+}

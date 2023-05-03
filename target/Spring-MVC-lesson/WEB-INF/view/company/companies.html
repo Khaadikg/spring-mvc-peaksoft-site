@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Companies Page</title>
+    <link rel="stylesheet" th:href="@{/list.css}">
+</head>
+<body>
+<div class="list_navbar">
+    <div class="list_back">
+        <input style="display: block; margin:auto; font-size:40px;"
+               type="button" value="HOME" onclick="window.location.href = '/'">
+    </div>
+    <div class="navbar_name">
+        <h1>COMPANIES LIST</h1>
+    </div>
+    <form th:action="@{search}" th:method="get" style="text-align: center">
+        <input text="text" name="name" placeholder="Search">
+        <input class="form_submit" type="submit" value = "ENTER">
+    </form>
+    <div class="navbar_new">
+        <input style="display: block; margin:auto; font-size: 50px"
+               type="button" value="NEW" onclick="window.location.href = '/company/addCompany'">
+    </div>
+</div>
+<div class="list_holder">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>COURSE</th>
+            <th>DELETE</th>
+            <th>UPDATE</th>
+        </tr>
+        <tr th:each="company:${companies}">
+            <td th:text="${company.id}"></td>
+            <td th:text="${company.companyName}"></td>
+            <td th:text="${company.locatedCountry}"></td>
+            <td>
+                <form th:method="get"
+                      th:action="@{/company/courses/{companyId}(companyId=${company.getId()})}">
+                    <input type="submit" value="COURSE" style="color: ORANGE">
+                </form>
+            </td>
+            <td>
+                <form th:method="post"
+                      th:action="@{/company/delete/(id=${company.getId()})}">
+                    <input type="submit" value="delete" style="color: red">
+                </form>
+            </td>
+            <td>
+                <form
+                        th:method="get"
+                        th:action="@{/company/companyUpdate/{id}(id=${company.id})}">
+                    <input type="submit" value="EDIT" style="color: green">
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

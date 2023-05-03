@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List Page</title>
+    <link rel="stylesheet" th:href="@{/list.css}">
+</head>
+<body>
+<div class="list_navbar">
+    <div class="list_back">
+        <input style="display: block; margin:auto; font-size:40px;"
+                type="button" value="HOME" onclick="window.location.href = '/'">
+    </div>
+    <div class="navbar_name">
+        <h1>GROUPS LIST</h1>
+    </div>
+    <div class="navbar_new">
+        <input style="display: block; margin:auto; font-size: 50px"
+               type="button" value="NEW" onclick="window.location.href = '/group/addGroup'">
+    </div>
+</div>
+<div class="list_holder">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Group Name</th>
+            <th>Date of Start</th>
+            <th>Date of Finish</th>
+            <th>DELETE</th>
+            <th>UPDATE</th>
+        </tr>
+        <tr th:each="group:${groups}">
+            <td th:text="${group.id}"></td>
+            <td th:text="${group.groupName}"></td>
+            <td th:text="${group.dateStart}"></td>
+            <td th:text="${group.dateFinish}"></td>
+<!--            <td th:each="groups:${courseList}">-->
+            </td>
+            <td>
+                <form th:method="post"
+                      th:action="@{/group/delete/(id=${group.getId()})}">
+                    <input type="submit" value="DELETE" style="color: red">
+                </form>
+            </td>
+            <td>
+                <form
+                    th:method="get"
+                    th:action="@{/group/groupUpdate/{id}(id=${group.id})}">
+                    <input type="submit" value="EDIT" style="color: green">
+                </form>
+            </td>
+
+        </tr>
+    </table>
+</div>
+</body>
+</html>

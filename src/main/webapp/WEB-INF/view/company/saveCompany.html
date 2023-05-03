@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Save Page</title>
+    <link rel="stylesheet" th:href="@{/save.css}">
+</head>
+<body>
+<div class="form" style="height:300px">
+    <form
+            th:action="@{saveCompany}"
+            th:method="post"
+            th:object="${company}"
+            style="text-align: center">
+
+        <input text="text" class="form_input" th:field="*{companyName}" placeholder="Company Name">
+        <br>
+        <br>
+        <input text="text" class="form_input" th:field="*{locatedCountry}" placeholder="Located Country">
+        <br>
+        <br>
+        <input class="form_submit" type="submit" value = "ENTER">
+
+    </form>
+</div>
+
+</body>
+</html>
