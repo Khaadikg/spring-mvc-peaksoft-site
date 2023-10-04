@@ -1,2 +1,3 @@
-# Spring-MVC-lesson
- paksoft spring mvc task
+# spring-mvc-lessons
+clone service for educational practice
+https://peaksoft.house
