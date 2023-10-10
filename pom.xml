@@ -27,6 +27,12 @@
     </dependency>
 
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <version>2.7.1</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
       <version>${spring.version}</version>
@@ -107,6 +113,25 @@
   </dependencies>
 
   <build>
+<!--    <plugins>-->
+<!--      <plugin>-->
+<!--        <groupId>com.spotify</groupId>-->
+<!--        <artifactId>docker-maven-plugin</artifactId>-->
+<!--        <version>0.4.14</version>-->
+<!--        <configuration>-->
+<!--          <imageName>peaksoft-mvc</imageName>-->
+<!--          <baseImage>java</baseImage>-->
+<!--          <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>-->
+<!--          <resources>-->
+<!--            <resource>-->
+<!--              <targetPath>/</targetPath>-->
+<!--              <directory>${project.build.directory}</directory>-->
+<!--              <include>${project.build.finalName}.jar</include>-->
+<!--            </resource>-->
+<!--          </resources>-->
+<!--        </configuration>-->
+<!--      </plugin>-->
+<!--    </plugins>-->
     <finalName>Spring-MVC-lesson</finalName>
   </build>
 </project>
